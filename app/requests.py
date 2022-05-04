@@ -9,3 +9,29 @@ api_key = None
 base_url = None
 articles_url = None
 sources_url = None
+
+
+def configure_request(app):
+    '''funcion that takes in the application instance and replaces the values of the none variables to application configuration objects'''
+    
+    global api_key,base_url, articles_url,sources_url
+    api_key = app.config['NEWS_API_KEY']
+    sources_url = app.config['SOURCE_ARTICLES_URL']
+    base_url = app.config['NEWS_API_BASE_URL']
+    articles_url = app.config['NEWS_ARTICLES_APL_URL']
+
+def get_sources(category):
+    """
+    function that gets response from the api call
+    """
+    sources_url = base_url.format(category,api_key)
+    with urllib.request.urlopen(sources_url) as url:
+
+        sources_data = url.read()
+        response = json.loads(sources_data) 
+
+        sources_outcome = None        
+        if response['sources']:
+            sources_outcome_items = response['sources']
+            sources_outcome = process_new_sources(sources_outcome_items)
+    return sources_outcome
