@@ -1,4 +1,3 @@
-from distutils.debug import DEBUG
 import os
 
 from instance.config import NEWS_API_KEY 
@@ -11,6 +10,8 @@ class Config:
     NEWS_ARTICLES_APL_URL='https://newsapi.org/v2/everything?q={}&apiKey={}'
     SOURCE_ARTICLES_URL='https://newsapi.org/v2/everything?sources={}&apiKey={}' 
 
+    NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 class ProdConfig(Config):
     '''Production configuration child class
