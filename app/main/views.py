@@ -30,3 +30,14 @@ def NewsArticles():
     education_articles = get_articles('technology')
 
     return render_template('articles.html',health=health_articles, tech =education_articles)
+
+@main.route('/search/<article_name>')
+def articleSearch(article_name):
+    """
+    function that returns the searched articles
+    """
+    search_article_name = article_name.split("")
+    search_name_format = "+".join(search_article_name)
+    searched_articles = search_articles(search_name_format) 
+
+    return render_template('search.html',articles = searched_articles)
