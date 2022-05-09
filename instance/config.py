@@ -1,0 +1,4 @@
+
+
+NEWS_API_KEY='c3a5bc9e78a645d7bfcff9c87f273ace'
+SECRET_KEY='THENEWS'

@@ -1,0 +1,15 @@
+{% extends 'base.html'%} {% import 'macros.html' as macro %} {% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}" />
+{% endblock %} {% block content %}
+<div class="container-fluid" id="allsources">
+  <div class="overlay content">
+    <h2 class="text-center font-weight-bold headers title2">General News</h2>
+    {{ macro.display_new_sources(general) }}
+    <h2 class="text-center font-weight-bold headers title2">Business News</h2>
+    {{ macro.display_new_sources(business) }}
+    <h2 class="text-center font-weight-bold headers title2">Sports news</h2>
+    {{ macro.display_new_sources(sports) }}
+  </div>
+</div>
+{% endblock %}
